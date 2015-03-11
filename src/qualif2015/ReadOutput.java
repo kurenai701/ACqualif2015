@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class ReadOutput {	
 
-	public static String OutputTestFilePath = "C:\\ACQualifFile\\OutputTest.txt";
-
+	
+	
 	public static void main(String[] args) {
 		
 		ReadOutput ro = new ReadOutput();
@@ -15,11 +15,19 @@ public class ReadOutput {
 	
 	public Scanner ScannerOutputFile()
 	{
-		FileUtil fu = new FileUtil();		
-		return fu.ScannerFile(OutputTestFilePath);
+		return CommonStatic.FU.ScannerFile(CommonStatic.OutputTestFilePath);
 	}
 	
 	
+	// If there is a simple way to obtain a "score from the Generated outputFile"
+	public int EvaluateScoreFromOutput()
+	{
+		int score = -42;
+		
+		return score;
+	}
+	
+
 
 	
 }
