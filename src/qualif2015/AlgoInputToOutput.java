@@ -9,20 +9,12 @@ public class AlgoInputToOutput {
 	public static void main(String[] args) {
 		
 		AlgoInputToOutput algo = new AlgoInputToOutput();
+		MockTestGenerator mock = new MockTestGenerator();
 		
-		ProblemModel pbModTest = algo.getProblemModTestAlgo();
-		
+		ProblemModel pbModTest = mock.getProblemModTestAlgo();		
 		algo.AlgoSimple(pbModTest);
 
-	}
-	
-	public ProblemModel getProblemModTestAlgo()
-	{
-		ProblemModel res = new ProblemModel();
-		res.intTest1 = 42;
-		res.stringTest = "bbb";
-		return res;
-	}
+	}	
 	
 	
 	public OutputModel AlgoSimple(ProblemModel pbModel)
@@ -31,10 +23,15 @@ public class AlgoInputToOutput {
 		
 		System.out.println("Demarrage Algo");
 		
+		//  !!!!!!!!!!!!!!!!!!! //
 		// TODO CODER ICI LA LOGIQUE DE L'ALGO
+		//  !!!!!!!!!!!!!!!!!!! //
+		
 		res.OutputInt = pbModel.intTest1;
 		res.OtherInt = 31416;
 		res.OutputString = pbModel.stringTest;
+		
+		//  !!!!!!!!!!!!!!!!!!! // FIN LOGIQUE ALGO
 		
 		return res;
 	}

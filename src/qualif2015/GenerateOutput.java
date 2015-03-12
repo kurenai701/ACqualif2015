@@ -8,23 +8,15 @@ public class GenerateOutput {
 	public static void main(String[] args) {
 
 		GenerateOutput go = new GenerateOutput();
+		MockTestGenerator mock = new MockTestGenerator();
 		
 		// Obtain output model.
 	
-		OutputModel outModTest = go.getOutputModelTest();
-		go.GenerateOutputFileFromOutputModel(outModTest);
-	}
+		OutputModel outModTest = mock.getOutputModelTest();
+		go.GenerateOutputFileFromOutputModel(outModTest, CommonStatic.OutputGeneratedPathUnitTest);
+	}	
 
-	
-	public OutputModel getOutputModelTest()
-	{
-		OutputModel outMod = new OutputModel();
-		outMod.OutputInt = 42;
-		outMod.OtherInt = 1337;
-		return outMod;
-	}
-
-	public void GenerateOutputFileFromOutputModel(OutputModel outModel)
+	public void GenerateOutputFileFromOutputModel(OutputModel outModel, String filePath)
 	{
 		System.out.println("GenerateOutputFileFromOutputModel");
 	
@@ -35,13 +27,17 @@ public class GenerateOutput {
 		}
 		else
 		{
-			PrintWriter writer = CommonStatic.FU.CreateWriterFile(CommonStatic.OutputGeneratedPath, CommonStatic.OutputEncoding);
+			PrintWriter writer = CommonStatic.FU.CreateWriterFile(CommonStatic.OutputGeneratedPathUnitTest, CommonStatic.OutputEncoding);
 			if (writer != null)
 			{
-				// CODE HERE Output Generation Logic
+				//  !!!!!!!!!!!!!!!!!!! //
+				// TODO CODE HERE Output Generation Logic
+				//  !!!!!!!!!!!!!!!!!!! //
 				writer.println("Test Generate Output");
 				writer.println(outModel.OutputInt);
 				writer.println(outModel.OtherInt);
+				
+				//  !!!!!!!!!!!!!!!!!!! //
 				
 				writer.close();
 			}		

@@ -15,7 +15,7 @@ public class FileUtil {
 	{
 		try
 		{
-			// ouvrir fichier
+			// Open Text File
 			Scanner fileScan = new Scanner(new FileReader(fileFullpath));
 			System.out.println("File Found : " + fileFullpath);
 			return fileScan;

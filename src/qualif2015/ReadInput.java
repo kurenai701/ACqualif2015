@@ -14,7 +14,7 @@ public class ReadInput {
 		
 		ReadInput ri = new ReadInput();
 		
-		Scanner scanInput = ri.ScannerInputFile();
+		Scanner scanInput = ri.ScannerInputFileForUnitTest();
 		ProblemModel pbMod = ri.ProcessReadInputToModel(scanInput);
 		ri.ProcessInputModelToVerifFile(pbMod, CommonStatic.InputFileVerifPath);
 
@@ -23,6 +23,11 @@ public class ReadInput {
 	public Scanner ScannerInputFile()
 	{
 		return CommonStatic.FU.ScannerFile(CommonStatic.InputFilePath);
+	}
+	
+	public Scanner ScannerInputFileForUnitTest()
+	{
+		return CommonStatic.FU.ScannerFile(CommonStatic.InputFilePathUnitTest);
 	}
 			
 	// From Input file to Input Model
@@ -33,9 +38,14 @@ public class ReadInput {
 		
 		if (scanInput != null)
 		{
-			// TODO	CODE here parsing of file, and saving to model		
+			//  !!!!!!!!!!!!!!!!!!! //
+			// TODO	CODE here parsing of file, and saving to model	
+			//  !!!!!!!!!!!!!!!!!!! //
+			
 			pbModel.stringTest = scanInput.next();
 			pbModel.intTest1 = 42;
+		
+			//  !!!!!!!!!!!!!!!!!!! //
 		}	
 		
 		return pbModel;
@@ -55,10 +65,17 @@ public class ReadInput {
 		if (writer != null)
 		{
 			if (pbModel != null)
-			{	// TODO CODE here processing to read the model and write the file
+			{	
+				//  !!!!!!!!!!!!!!!!!!! //
+				// TODO CODE here processing to read the model and write the file
+				//  !!!!!!!!!!!!!!!!!!! //
+
+				
 				writer.println("testingInputWriter");
 				writer.println(pbModel.stringTest);	
 				writer.println(pbModel.intTest1);
+				
+				//  !!!!!!!!!!!!!!!!!!! //
 			}
 			writer.close();
 		}

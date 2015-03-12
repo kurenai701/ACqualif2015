@@ -1,7 +1,10 @@
 package qualif2015;
 
 
-// Class for modeling the "HASH CODE 2015 problem"
+/*
+ *  ProblemModel : For Modeling the HashCode Problem
+ *  
+ */
 public class ProblemModel {
 
 	

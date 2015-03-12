@@ -1,7 +1,13 @@
 package qualif2015;
 
-public class OutputModel {
 
+
+/*
+ *  OutputModel : classe Output
+ *  @author : Clemence MEGE
+ */
+  
+public class OutputModel {
 	
 	public int OutputInt;
 	public int OtherInt;
