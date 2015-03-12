@@ -20,6 +20,21 @@ public class AlgoInputToOutput {
 
 	}	
 	
+	public void   optimizeAlloc(ProblemModel pbModel)
+	{
+		// Optimize the server allocation to groups
+		
+		
+		
+		
+		
+	
+	}
+	
+	
+	
+	
+	
 	
 	public OutputModel AlgoSimple(ProblemModel pbModel)
 	{
@@ -52,8 +67,8 @@ public class AlgoInputToOutput {
 				ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup);
 				res.updateServerAllocation(  myAlloc);
 			}
-			curRow++;
-			curGroup++;
+			curRow = (curRow+1)% pbModel.R;
+			curGroup = (curGroup+1)%pbModel.P;
 			
 		}
 		

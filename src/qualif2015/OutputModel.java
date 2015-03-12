@@ -109,5 +109,57 @@ public class OutputModel {
 	}
 	
 	
+	int getScoreModel()
+	{
+		//Return the score of current model
+		
+		int lowestScore = Integer.MAX_VALUE;
+		
+		//Get score per row
+		int scoreRow[][] = new int[pb.P][pb.R];//power per Group per Row
+		for(ServerAllocation curAlloc :serverAllocation)
+		{
+			if(curAlloc.Row>=0)
+			{
+				scoreRow[curAlloc.Group][curAlloc.Row] += pb.serverList.get(  curAlloc.serverNumber ).C;
+			}
+		}
+		
+		int scoreGroup[] = new int[pb.P];
+		for(int curG = 0;curG<pb.P;curG++ )
+		{
+			scoreGroup[curG] = 0;
+			int highestRow = 0;
+			for(int curR = 0; curR< pb.R;curR++)
+			{
+				scoreGroup[curG] =  scoreGroup[curG] + scoreRow[curG][curR];
+				if(scoreRow[curG][curR] > highestRow)
+				{
+					highestRow = scoreRow[curG][curR];
+				}
+				
+			}
+			
+			// Remove highest row capacity;
+			scoreGroup[curG] = scoreGroup[curG] - highestRow;
+			// update total score
+			if(scoreGroup[curG] < lowestScore)
+			{
+				lowestScore = scoreGroup[curG];
+			}
+			
+		}
+		
+		if(lowestScore == Integer.MAX_VALUE)
+		{
+			return 0;
+		}
+		
+		return lowestScore;
+		
+		
+	}
+	
+	
 	
 }
