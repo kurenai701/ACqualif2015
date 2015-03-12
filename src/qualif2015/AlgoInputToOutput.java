@@ -134,7 +134,7 @@ public class AlgoInputToOutput {
 	{
 	//Take to the rich, give to the poor
 		ScoreInfo curScore = res.getScoreModel();
-		
+		System.out.println( "" +curScore.score);
 		
 		int bestScore = 0;
 		int bestG = -1;
@@ -157,7 +157,7 @@ public class AlgoInputToOutput {
 		}
 		
 		// Select one server and exchange it
-		ServerAllocation token = getServerFromGroup(res,bestG);// a optimiser
+		ServerAllocation token = getServerFromGroup(res,bestG,curScore);// a optimiser
 		transferFromTo(res, bestG,minG, token);
 	
 		
@@ -169,19 +169,32 @@ public class AlgoInputToOutput {
 		token.Group = minG;
 	}
 	
-	  public ServerAllocation getServerFromGroup(OutputModel res,int bestG)
+	
+	
+  public ServerAllocation getServerFromGroup(OutputModel res,int bestG, ScoreInfo curScore)
+  {
+	  
+	  // extract the least problematic server from the group: the lowest capacity server from the best score row
+	  int bestRow = curScore.bestRowByGroup[bestG];
+	  
+	  ServerAllocation candidate = null;
+	  for(ServerAllocation curAlloc : res.serverAllocation)
 	  {
-		  for(ServerAllocation curAlloc : res.serverAllocation)
+		  
+		  if(curAlloc.Group == bestG   && curAlloc.Row == bestRow)
 		  {
-			  
-			  if(curAlloc.Group == bestG)
+			  if( candidate == null ||  res.pb.serverList.get(  curAlloc.serverNumber).C <   res.pb.serverList.get(  candidate.serverNumber).C    )
 			  {
-				  return curAlloc;
+				  candidate = curAlloc;
 			  }
 		  }
-		  return null;
+		  
+		  
 		  
 	  }
+	  return candidate;
+	  
+  }
 	
 	
 	

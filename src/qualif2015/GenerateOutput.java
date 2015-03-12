@@ -53,12 +53,12 @@ public class GenerateOutput {
 					
 					if (row == -1)
 					{
-						System.out.println("x");
+					//	System.out.println("x");
 						writer.println("x");
 					}
 					else
 					{
-						System.out.println(row + " " + col + " " + group);
+				//		System.out.println(row + " " + col + " " + group);
 						writer.println(row + " " + col + " " + group);	
 					}
 				}

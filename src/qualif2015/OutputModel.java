@@ -124,12 +124,8 @@ public class OutputModel {
 	}
 	
 	
-	ScoreInfo getScoreModel()
+	int[][] computeScoreRow ()
 	{
-		//Return the score of current model
-		
-		int lowestScore = Integer.MAX_VALUE;
-		
 		//Get score per row
 		int scoreRow[][] = new int[pb.P][pb.R];//power per Group per Row
 		for(ServerAllocation curAlloc :serverAllocation)
@@ -139,8 +135,23 @@ public class OutputModel {
 				scoreRow[curAlloc.Group][curAlloc.Row] += pb.serverList.get(  curAlloc.serverNumber ).C;
 			}
 		}
+	 return 	scoreRow;
+	}
+	
+	
+	ScoreInfo getScoreModel()
+	{
+		//Return the score of current model
+		
+		int lowestScore = Integer.MAX_VALUE;
+		
+		//Get score per row
+		int scoreRow[][] = computeScoreRow();
 		
 		int scoreGroup[] = new int[pb.P];
+		
+		int bestRowByGroup[] = new int[pb.P];
+		
 		for(int curG = 0;curG<pb.P;curG++ )
 		{
 			scoreGroup[curG] = 0;
@@ -151,6 +162,7 @@ public class OutputModel {
 				if(scoreRow[curG][curR] > highestRow)
 				{
 					highestRow = scoreRow[curG][curR];
+					bestRowByGroup[curG]=curR;
 				}
 				
 			}
@@ -167,11 +179,11 @@ public class OutputModel {
 		
 		if(lowestScore == Integer.MAX_VALUE)
 		{
-			return new ScoreInfo(0, scoreGroup);
+			return new ScoreInfo(0, scoreGroup,bestRowByGroup);
 		}
 		
 		
-		return new ScoreInfo(lowestScore, scoreGroup);
+		return new ScoreInfo(lowestScore, scoreGroup,bestRowByGroup);
 		
 		
 	}
