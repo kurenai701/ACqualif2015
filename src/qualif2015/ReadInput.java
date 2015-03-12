@@ -2,8 +2,8 @@ package qualif2015;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 
 
@@ -83,7 +83,7 @@ public class ReadInput {
 				zi = scanInput.nextInt();
 				ci = scanInput.nextInt();
 				
-				serverI = new Server(zi,ci);				
+				serverI = new Server(sCounter,zi,ci);				
 				System.out.println(zi + " " + ci);
 				servList.add(serverI);
 			}

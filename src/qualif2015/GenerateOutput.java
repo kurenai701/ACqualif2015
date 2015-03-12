@@ -12,8 +12,8 @@ public class GenerateOutput {
 		
 		// Obtain output model.
 	
-		OutputModel outModTest = mock.getOutputModelTest();
-		go.GenerateOutputFileFromOutputModel(outModTest, CommonStatic.OutputGeneratedPathUnitTest);
+	//	OutputModel outModTest = mock.getOutputModelTest();
+	//	go.GenerateOutputFileFromOutputModel(outModTest, CommonStatic.OutputGeneratedPathUnitTest);
 	}	
 
 	public void GenerateOutputFileFromOutputModel(OutputModel outModel, String filePath)
@@ -34,8 +34,8 @@ public class GenerateOutput {
 				// TODO CODE HERE Output Generation Logic
 				//  !!!!!!!!!!!!!!!!!!! //
 				writer.println("Test Generate Output");
-				writer.println(outModel.OutputInt);
-				writer.println(outModel.OtherInt);
+				//writer.println(outModel.OutputInt);
+				//writer.println(outModel.OtherInt);
 				
 				//  !!!!!!!!!!!!!!!!!!! //
 				

@@ -1,11 +1,12 @@
 package qualif2015;
 
 public class Server implements Comparable<Server> {
-
+	int Number;
 	int Z;//size
 	int C;//capacity
-	public Server(int z, int c) {
+	public Server(int number,int z, int c) {
 		super();
+		Number = number;// commence à 1
 		Z = z;
 		C = c;
 	}
@@ -14,11 +15,15 @@ public class Server implements Comparable<Server> {
 	
 	@Override
 	public int compareTo(Server a) {
-		if(this.C> a.C)// more capacity is better
+		double thisScore = (this.C)/(double)(this.Z);
+		double aScore = (a.C)/(double)(a.Z);
+		
+		
+		if(thisScore> aScore)// more capacity is better
 		{
 			return 1;
 		}
-		if(this.C< a.C)
+		if(thisScore< aScore)
 		{
 			return -1;
 		}
@@ -33,6 +38,10 @@ public class Server implements Comparable<Server> {
 			return -1;
 		}
 		return 0;
+		
+		
+		
+	
 		
 		
 	}

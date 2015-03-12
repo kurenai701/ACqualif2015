@@ -1,5 +1,9 @@
 package qualif2015;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class AlgoInputToOutput {
 
@@ -19,22 +23,69 @@ public class AlgoInputToOutput {
 	
 	public OutputModel AlgoSimple(ProblemModel pbModel)
 	{
-		OutputModel res = new OutputModel();
+		ServerAllocation servA[] = new ServerAllocation[pbModel.M];
+		for(int ii =0;ii<pbModel.M;ii++ )
+		{
+			servA[ii] = new ServerAllocation(ii+1, -1, -1, -1);
+		}
+		
+		OutputModel res = new OutputModel(servA, pbModel.roomMap, pbModel);
+		 
+		
 		
 		System.out.println("Demarrage Algo");
 		
-		//  !!!!!!!!!!!!!!!!!!! //
-		// TODO CODER ICI LA LOGIQUE DE L'ALGO
-		//  !!!!!!!!!!!!!!!!!!! //
+		// Sort server List 
+		List<Server> sortedServerList = new ArrayList<Server>(pbModel.serverList);
+		Collections.sort(sortedServerList);//: inline sort!
 		
-	//	res.OutputInt = pbModel.intTest1;
-	//	res.OtherInt = 31416;
-	//	res.OutputString = pbModel.stringTest;
 		
-		//  !!!!!!!!!!!!!!!!!!! // FIN LOGIQUE ALGO
+		//Round Robin Group and Row allocation;
+		int curGroup=0;
+		int curRow=0;
+		for(Server curServ : sortedServerList )
+		{
+			//Try to fit server is room Line
+			int pos = firstFitPosition( curServ.Z, curRow, res);
+			if(pos>=0)
+			{
+				ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup);
+				res.updateServerAllocation(  myAlloc);
+			}
+			curRow++;
+			curGroup++;
+			
+		}
+		
+		
+		
 		
 		return res;
 	}
+	
+	
+	
+	
+	
+	int firstFitPosition(int size, int row, OutputModel outp)
+	{
+		//Return fit position for the server of size size at row row
+		
+		for(int curC =0;curC<outp.S;curC++)
+		{
+			if( outp.roomMap[row][curC]>=size  )
+			{
+				return curC;
+			}
+			
+		}
+		return -1;
+		
+		
+	}
+	
+	
+	
 	
 	
 }

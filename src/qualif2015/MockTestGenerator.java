@@ -17,13 +17,13 @@ public class MockTestGenerator {
 	}
 	
 	// TO Initialize TEST
-		public OutputModel getOutputModelTest()
-		{
-			OutputModel outMod = new OutputModel();
-			outMod.OutputInt = 42;
-			outMod.OtherInt = 1337;
-			return outMod;
-		}
+	//	public OutputModel getOutputModelTest()
+	//	{
+		//	OutputModel outMod = new OutputModel();
+		//	outMod.OutputInt = 42;
+		//	outMod.OtherInt = 1337;
+		//	return outMod;
+	//	}
 	
 	
 }
