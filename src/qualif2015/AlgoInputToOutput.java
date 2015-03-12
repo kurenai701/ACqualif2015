@@ -53,7 +53,7 @@ public class AlgoInputToOutput {
 		
 		// Sort server List 
 		List<Server> sortedServerList = new ArrayList<Server>(pbModel.serverList);
-		Collections.sort(sortedServerList);//: inline sort!
+		Collections.sort(sortedServerList,Collections.reverseOrder());//: inline sort, Higher score to lower score!
 		
 		
 		//Round Robin Group and Row allocation;

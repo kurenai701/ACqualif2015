@@ -22,7 +22,7 @@ public class OutputModel {
 	public OutputModel(ServerAllocation[] serverAllocation, int[][] roomMap,ProblemModel pb) {
 		super();
 		this.serverAllocation = serverAllocation;
-		this.roomMap = roomMap;
+		this.roomMap = roomMap.clone();
 		this.pb = pb;
 		
 		R = roomMap.length;
@@ -84,7 +84,7 @@ public class OutputModel {
 			{
 				for( int jj = 0;jj< serverZ;jj++)
 				{
-					roomMap[updatedR][updatedC] = ii;// clear or set
+					roomMap[updatedR][updatedC+jj] = ii;// clear or set
 				}
 			}
 			

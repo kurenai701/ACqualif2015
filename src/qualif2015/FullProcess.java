@@ -13,8 +13,8 @@ public class FullProcess {
 		ReadOutput ro = new ReadOutput();
 				
 		//// process input**********************
-		//Scanner scanInput = ri.ScannerInputFile();
-		Scanner scanInput = ri.ScannerInputFileForUnitTest();
+		Scanner scanInput = ri.ScannerInputFile();
+		//Scanner scanInput = ri.ScannerInputFileForUnitTest();
 		//*********************************
 		
 		
