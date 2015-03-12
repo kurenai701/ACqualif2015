@@ -17,6 +17,16 @@ public class ServerAllocation implements Comparable<ServerAllocation> {
 		this.serverCapacity = serverCapacity;
 	}
 	
+	public ServerAllocation(ServerAllocation s) {
+		super();
+		this.serverNumber = s.serverNumber;
+		Row = s.Row;
+		Column = s.Column;
+		Group = s.Group;
+		this.serverCapacity = s.serverCapacity;
+	}
+	
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

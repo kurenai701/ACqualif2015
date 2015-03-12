@@ -107,13 +107,18 @@ public class AlgoInputToOutput {
 //			(initialGroupAlloc[curAlloc.Group]).allocatedServers.add(   pbModel.serverList.get(curAlloc.serverNumber)   );
 //		}
 		
-		ServerAllocation bestResult[] = resInitial.serverAllocation.clone();
+		ServerAllocation bestResult[] = new ServerAllocation[ resInitial.serverAllocation.length];
+		
+		for(int ii = 0;ii<bestResult.length;ii++ )
+		{
+			bestResult[ii] = new ServerAllocation(resInitial.serverAllocation[ii]);
+		}
 		
 		ScoreInfo curScore = resInitial.getScoreModel();
 		int bestScore = curScore.score;
 		
-		int Nit = 1000;
-		int ThresholdKeep = 1000;// probability to stay at best result
+		int Nit = 500000;
+		int ThresholdKeep = 50;// probability to stay at best result
 		int ThresholdNotBest = 970;
 		for(int itc = 0;itc<Nit;itc++)
 		{
@@ -123,12 +128,22 @@ public class AlgoInputToOutput {
 			if(curScore.score>bestScore)
 			{
 				bestScore=curScore.score;
-				bestResult = resInitial.serverAllocation.clone();
+				for(int ii = 0;ii<bestResult.length;ii++ )
+				{
+					bestResult[ii] = new ServerAllocation(resInitial.serverAllocation[ii]);
+				}
+
 			}else
 			{
 				if(randi(0,1000,rand)<ThresholdKeep)
 				{
-					resInitial.serverAllocation =bestResult;
+				
+					
+					for(int ii = 0;ii<bestResult.length;ii++ )
+					{
+						resInitial.serverAllocation[ii] = new ServerAllocation(bestResult[ii]);
+					}
+					
 				}
 				
 			}
@@ -137,8 +152,10 @@ public class AlgoInputToOutput {
 		
 		
 		
-		
-		resInitial.serverAllocation =bestResult;
+		for(int ii = 0;ii<bestResult.length;ii++ )
+		{
+			resInitial.serverAllocation[ii] = new ServerAllocation(bestResult[ii]);
+		}
 		
 		
 		// initialGroupAlloc contains the servers allocated to each group.
@@ -176,7 +193,7 @@ public class AlgoInputToOutput {
 		}
 		
 		// Select one server and exchange it
-		if(randi(0,1000,rand)>900)
+		if(randi(0,1000,rand)>950)
 		{
 			bestG = randi(0,res.pb.P-1,rand);
 		}
