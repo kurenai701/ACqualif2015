@@ -78,12 +78,12 @@ public class ReadInput {
 			int zi; 
 			int ci;
 			Server serverI;
-			for (int sCounter = 1; sCounter <= M; sCounter++)
+			for (int mCounter = 1; mCounter <= M; mCounter++)
 			{				
 				zi = scanInput.nextInt();
 				ci = scanInput.nextInt();
 				
-				serverI = new Server(sCounter,zi,ci);				
+				serverI = new Server(mCounter,zi,ci);				
 				System.out.println(zi + " " + ci);
 				servList.add(serverI);
 			}
