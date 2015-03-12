@@ -1,7 +1,9 @@
 package qualif2015;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
 
 
@@ -42,9 +44,49 @@ public class ReadInput {
 			// TODO	CODE here parsing of file, and saving to model	
 			//  !!!!!!!!!!!!!!!!!!! //
 			
-	//		pbModel.stringTest = scanInput.next();
-	//		pbModel.intTest1 = 42;
-		
+			
+			int R = scanInput.nextInt();
+			int S = scanInput.nextInt();
+			int U = scanInput.nextInt();
+			int P = scanInput.nextInt();
+			int M = scanInput.nextInt();
+			
+			pbModel = new ProblemModel(R, S, U, P, M, null, null);
+							
+			//System.out.println(R + " " + S + " " + U + " " + P + " " + M);
+			
+			int ri;
+			int si;
+			
+			
+			// Parsing Unavailable			
+			for (int uCounter = 1; uCounter <= U; uCounter++)
+			{
+				ri = scanInput.nextInt();
+				si = scanInput.nextInt();
+				
+				System.out.println("rienfaitpourlemoment");
+				System.out.println(ri + " " + si);
+			}
+			
+			// Parsing SERVERS
+			List<Server> servList = new ArrayList<Server>();			
+			
+			int zi; 
+			int ci;
+			Server serverI;
+			for (int sCounter = 1; sCounter <= S; sCounter++)
+			{				
+				zi = scanInput.nextInt();
+				ci = scanInput.nextInt();
+				
+				serverI = new Server(zi,ci);				
+				System.out.println(zi + " " + ci);
+				servList.add(serverI);
+			}
+			
+			pbModel = new ProblemModel(R, S, U, P, M, null, servList);
+				
 			//  !!!!!!!!!!!!!!!!!!! //
 		}	
 		
