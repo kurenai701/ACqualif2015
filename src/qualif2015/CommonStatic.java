@@ -5,21 +5,30 @@ public class CommonStatic {
 	// FileUtil
 	public static final FileUtil FU = new FileUtil();
 	
+	public static final String QualifFilesFolderPath = "C:\\ACQualifFile\\";
+	
 	// ZIP
-	public static final String OUTPUT_ZIP_FILE = "C:\\ACQualifFile\\FolderSourceMEGEClemAlex.zip"; 
+	public static final String OUTPUT_ZIP_FILE = QualifFilesFolderPath+"FolderSourceMEGEClemAlex.zip"; 
+	//  /!\ ClemJava
 	public static final String SOURCE_FOLDER = "C:\\ClemJava\\HC2015\\ACqualif2015\\src";
 
 	
 	// INPUT
-	public static final String InputFilePath = "C:\\ACQualifFile\\test.txt";
-	public static final String InputFileVerifPath = "C:\\ACQualifFile\\verifInput.txt";
+	public static final String InputFilePath = QualifFilesFolderPath+"TESTINPUT.txt";
+	public static final String InputFileVerifPath = QualifFilesFolderPath+"verifInputFromInputModel.txt";
 	public static final String InputEncoding = "UTF-8";
 	
+	//Input of Full processing GeneratedFromOutput
+	public static final String InputFileVerifPathFromOutputRead = QualifFilesFolderPath+"verifInputFromOutput.txt";
+	
+	
 	// OUTPUT
-	public static final String OutputGeneratedPath = "C:\\ACQualifFile\\OutputGenerated.txt"; 	
+	public static final String OutputGeneratedPath = QualifFilesFolderPath+"OutputGenerated.txt"; 	
 	public static final String OutputEncoding = "UTF-8";
 	
-	public static final String OutputTestFilePath = "C:\\ACQualifFile\\OutputTest.txt";
+	
+	// quand on aura généré le output generated, et qu'on veut le tester
+	public static final String OutputTestFilePath = QualifFilesFolderPath+"TESTEXEMPLEOUTPUT.txt";
 	
 	
 	

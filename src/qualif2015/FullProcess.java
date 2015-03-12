@@ -14,7 +14,7 @@ public class FullProcess {
 		Scanner scanInput = ri.ScannerInputFile();
 		ProblemModel pbMod = ri.ProcessReadInputToModel(scanInput);
 				
-		ri.ProcessInputModelToVerifFile(pbMod);
+		ri.ProcessInputModelToVerifFile(pbMod, CommonStatic.InputFileVerifPath);
 		
 		//// Algorithm
 		AlgoInputToOutput algo = new AlgoInputToOutput();
@@ -24,7 +24,13 @@ public class FullProcess {
 		GenerateOutput genOut = new GenerateOutput();		
 				genOut.GenerateOutputFileFromOutputModel(outMod);
 			
+			
+		// Verify Output correctly linked to Input				
+		ReadOutput ro = new ReadOutput();
+		Scanner scanOutput = ro.ScannerOutputFile();	
+		ProblemModel pbModVerif = ro.ProcessReadOutputToInputModel(scanOutput);
 				
+		ri.ProcessInputModelToVerifFile(pbModVerif, CommonStatic.InputFileVerifPathFromOutputRead);		
 	}
 	
 }

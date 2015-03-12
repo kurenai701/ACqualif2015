@@ -1,5 +1,6 @@
 package qualif2015;
 
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ReadOutput {	
@@ -9,8 +10,15 @@ public class ReadOutput {
 	public static void main(String[] args) {
 		
 		ReadOutput ro = new ReadOutput();
-		Scanner scanOutput = ro.ScannerOutputFile();
-		scanOutput.hashCode();
+		Scanner scanOutputFile = ro.ScannerOutputFile();
+		scanOutputFile.hashCode();
+		
+		ProblemModel pbModVerif = ro.ProcessReadOutputToInputModel(scanOutputFile);
+	
+		System.out.println(pbModVerif.stringTest);
+		System.out.println(pbModVerif.intTest1);
+
+	
 	}
 	
 	public Scanner ScannerOutputFile()
@@ -31,7 +39,21 @@ public class ReadOutput {
 
 	
 	
+	public ProblemModel ProcessReadOutputToInputModel(Scanner scanOutput)
+	{
+		System.out.println("VerifyOutputFileGeneratesInput");
+		ProblemModel pbModel = new ProblemModel();
+		
+		if (scanOutput != null)
+		{
+			// TODO	CODE here parsing and processing of output file to obtain input model		
+			pbModel.stringTest = scanOutput.next();
+			pbModel.intTest1 = scanOutput.nextInt();
+			pbModel.intTest1 = scanOutput.nextInt();
+		}			
+		return pbModel;
 	
+	}
 	
 
 	

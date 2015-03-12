@@ -16,7 +16,7 @@ public class ReadInput {
 		
 		Scanner scanInput = ri.ScannerInputFile();
 		ProblemModel pbMod = ri.ProcessReadInputToModel(scanInput);
-		ri.ProcessInputModelToVerifFile(pbMod);
+		ri.ProcessInputModelToVerifFile(pbMod, CommonStatic.InputFileVerifPath);
 
 	}
 	
@@ -45,12 +45,12 @@ public class ReadInput {
 	
 	// If time, and if we want to verify that we have correct modeling
 	// From Input Model to Something same as Input Text File
-	public void ProcessInputModelToVerifFile(ProblemModel pbModel)
+	public void ProcessInputModelToVerifFile(ProblemModel pbModel, String FilePath)
 	{
 		System.out.println("ProcessModelToVerifFile");
 		
 		// Writer
-		PrintWriter writer = CommonStatic.FU.CreateWriterFile(CommonStatic.InputFileVerifPath, "UTF-8");
+		PrintWriter writer = CommonStatic.FU.CreateWriterFile(FilePath, "UTF-8");
 		
 		if (writer != null)
 		{
