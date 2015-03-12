@@ -46,7 +46,11 @@ public class Server implements Comparable<Server> {
 		
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		return 	"N:"+Number+" Z:"+Z+" C:"+ C;
+	}
 	
 	
 	

@@ -12,13 +12,18 @@ public class FullProcess {
 		GenerateOutput genOut = new GenerateOutput();
 		ReadOutput ro = new ReadOutput();
 				
-		//// process input
-		Scanner scanInput = ri.ScannerInputFile();
+		//// process input**********************
+		//Scanner scanInput = ri.ScannerInputFile();
+		Scanner scanInput = ri.ScannerInputFileForUnitTest();
+		//*********************************
+		
+		
 		ProblemModel pbMod = ri.ProcessReadInputToModel(scanInput);
 				
 		ri.ProcessInputModelToVerifFile(pbMod, CommonStatic.InputFileVerifPath);
 		
 		//// process Algorithm		
+		
 		OutputModel outMod = algo.AlgoSimple(pbMod);
 		
 		//// GenerateOutputFile

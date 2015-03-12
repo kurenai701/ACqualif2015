@@ -41,6 +41,8 @@ public class OutputModel {
 	public void updateServerAllocation( ServerAllocation myAlloc) //update model 
 	{
 		
+		
+		
 		int curR =  serverAllocation[ myAlloc.serverNumber].Row;
 		int curC =  serverAllocation[ myAlloc.serverNumber].Column;
 		//int curG =  serverAllocation[ myAlloc.serverNumber].Group;
@@ -50,6 +52,11 @@ public class OutputModel {
 		
 		
 		int serverZ =  pb.serverList.get( myAlloc.serverNumber).Z;
+		
+		// ******************************
+		System.out.println("Reallocating at " + myAlloc + " Server :" +  pb.serverList.get( myAlloc.serverNumber) );
+		// ******************************
+		
 		
 		//update in list
 		serverAllocation[ myAlloc.serverNumber] = myAlloc;
@@ -79,12 +86,11 @@ public class OutputModel {
 				{
 					roomMap[updatedR][updatedC] = ii;// clear or set
 				}
-				updateLine(curR);
-				
-			
 			}
 			
 		}
+		updateLine(curR);
+		updateLine(newR);
 		
 		
 		
@@ -93,6 +99,10 @@ public class OutputModel {
 	
 	private void updateLine(int curR)//update continuousFreeSpace row
 	{
+		if(curR==-1)
+		{
+			return;
+		}
 		int curSpace=0;
 		for(int curC = roomMap[0].length-1;curC>=0;curC-- )
 		{

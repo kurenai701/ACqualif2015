@@ -10,15 +10,15 @@ public class AlgoInputToOutput {
 	
 	
 
-	public static void main(String[] args) {
-		
-		AlgoInputToOutput algo = new AlgoInputToOutput();
-		MockTestGenerator mock = new MockTestGenerator();
-		
-		ProblemModel pbModTest = mock.getProblemModTestAlgo();		
-		algo.AlgoSimple(pbModTest);
-
-	}	
+//	public static void main(String[] args) {
+//		
+//		AlgoInputToOutput algo = new AlgoInputToOutput();
+//		MockTestGenerator mock = new MockTestGenerator();
+//		
+//		ProblemModel pbModTest = mock.getProblemModTestAlgo();		
+//		algo.AlgoSimple(pbModTest);
+//
+//	}	
 	
 	public void   optimizeAlloc(ProblemModel pbModel)
 	{
@@ -38,6 +38,7 @@ public class AlgoInputToOutput {
 	
 	public OutputModel AlgoSimple(ProblemModel pbModel)
 	{
+		System.out.println("Starting simple algo");
 		ServerAllocation servA[] = new ServerAllocation[pbModel.M];
 		for(int ii =0;ii<pbModel.M;ii++ )
 		{
@@ -74,7 +75,7 @@ public class AlgoInputToOutput {
 		
 		
 		
-		
+		System.out.println("Finished simple algo");
 		return res;
 	}
 	
@@ -88,7 +89,7 @@ public class AlgoInputToOutput {
 		
 		for(int curC =0;curC<outp.S;curC++)
 		{
-			if( outp.roomMap[row][curC]>=size  )
+			if( outp.continuousFreeSpace[row][curC]>=size  )
 			{
 				return curC;
 			}
