@@ -1,5 +1,7 @@
 package qualif2015;
 
+import java.util.List;
+
 
 /*
  *  ProblemModel : For Modeling the HashCode Problem
@@ -15,8 +17,10 @@ public class ProblemModel {
 	int M;//​(1
 	
 	int roomMap[][];//Row Column
+	
+	List<Server> serverList;
 
-	public ProblemModel(int r, int s, int u, int p, int m, int[][] roomMap) {
+	public ProblemModel(int r, int s, int u, int p, int m, int[][] roomMap,List<Server> serverList) {
 		super();
 		R = r;
 		S = s;
@@ -24,6 +28,7 @@ public class ProblemModel {
 		P = p;
 		M = m;
 		this.roomMap = roomMap;
+		this.serverList=serverList;
 	}
 	
 	
