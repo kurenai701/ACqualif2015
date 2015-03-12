@@ -14,8 +14,8 @@ public class ReadOutput {
 		
 		ProblemModel pbModVerif = ro.ProcessReadOutputToInputModel(scanOutputFile);
 	
-		System.out.println(pbModVerif.stringTest);
-		System.out.println(pbModVerif.intTest1);
+	//	System.out.println(pbModVerif.stringTest);
+	//	System.out.println(pbModVerif.intTest1);
 
 	
 	}
@@ -50,7 +50,7 @@ public class ReadOutput {
 	public ProblemModel ProcessReadOutputToInputModel(Scanner scanOutput)
 	{
 		System.out.println("VerifyOutputFileGeneratesInput");
-		ProblemModel pbModel = new ProblemModel();
+		ProblemModel pbModel = null;//new ProblemModel();
 		
 		if (scanOutput != null)
 		{				
@@ -58,9 +58,9 @@ public class ReadOutput {
 			// TODO	CODE here parsing and processing of output file to obtain input model	
 			//  !!!!!!!!!!!!!!!!!!! //
 			
-			pbModel.stringTest = scanOutput.next();
-			pbModel.intTest1 = scanOutput.nextInt();
-			pbModel.intTest1 = scanOutput.nextInt();
+		//	pbModel.stringTest = scanOutput.next();
+		//	pbModel.intTest1 = scanOutput.nextInt();
+		//	pbModel.intTest1 = scanOutput.nextInt();
 			//  !!!!!!!!!!!!!!!!!!! //
 		}			
 		return pbModel;

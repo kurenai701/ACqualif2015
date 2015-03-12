@@ -7,11 +7,11 @@ public class MockTestGenerator {
 	
 	public ProblemModel getProblemModTestAlgo()
 	{
-		ProblemModel res = new ProblemModel();
+		ProblemModel res = null;//new ProblemModel();
 		
 		// CAS DE TEST
-		res.intTest1 = 42;
-		res.stringTest = "bbb";
+	//	res.intTest1 = 42;
+	//	res.stringTest = "bbb";
 			
 		return res;
 	}

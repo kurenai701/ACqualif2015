@@ -27,9 +27,9 @@ public class AlgoInputToOutput {
 		// TODO CODER ICI LA LOGIQUE DE L'ALGO
 		//  !!!!!!!!!!!!!!!!!!! //
 		
-		res.OutputInt = pbModel.intTest1;
-		res.OtherInt = 31416;
-		res.OutputString = pbModel.stringTest;
+	//	res.OutputInt = pbModel.intTest1;
+	//	res.OtherInt = 31416;
+	//	res.OutputString = pbModel.stringTest;
 		
 		//  !!!!!!!!!!!!!!!!!!! // FIN LOGIQUE ALGO
 		

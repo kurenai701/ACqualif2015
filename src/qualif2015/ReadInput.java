@@ -1,7 +1,7 @@
 package qualif2015;
 
-import java.util.Scanner;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 
 
@@ -34,7 +34,7 @@ public class ReadInput {
 	public ProblemModel ProcessReadInputToModel(Scanner scanInput)
 	{	
 		System.out.println("ProcessReadInputToModel");
-		ProblemModel pbModel = new ProblemModel();
+		ProblemModel pbModel = null;//new ProblemModel();
 		
 		if (scanInput != null)
 		{
@@ -42,8 +42,8 @@ public class ReadInput {
 			// TODO	CODE here parsing of file, and saving to model	
 			//  !!!!!!!!!!!!!!!!!!! //
 			
-			pbModel.stringTest = scanInput.next();
-			pbModel.intTest1 = 42;
+	//		pbModel.stringTest = scanInput.next();
+	//		pbModel.intTest1 = 42;
 		
 			//  !!!!!!!!!!!!!!!!!!! //
 		}	
@@ -72,8 +72,8 @@ public class ReadInput {
 
 				
 				writer.println("testingInputWriter");
-				writer.println(pbModel.stringTest);	
-				writer.println(pbModel.intTest1);
+		//		writer.println(pbModel.stringTest);	
+		//		writer.println(pbModel.intTest1);
 				
 				//  !!!!!!!!!!!!!!!!!!! //
 			}
