@@ -11,7 +11,7 @@ public class ReadOutput {
 		ReadOutput ro = new ReadOutput();
 		Scanner scanOutput = ro.ScannerOutputFile();
 		scanOutput.hashCode();
-			}
+	}
 	
 	public Scanner ScannerOutputFile()
 	{
@@ -22,12 +22,17 @@ public class ReadOutput {
 	// If there is a simple way to obtain a "score from the Generated outputFile"
 	public int EvaluateScoreFromOutput()
 	{
-		int score = -42;
+		int score = -42;		
 		
+		// TODO Code Here Evaluation of Score, if simple way
+		System.out.println("EvalScore : " + score);
 		return score;
 	}
-	
 
+	
+	
+	
+	
 
 	
 }

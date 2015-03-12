@@ -19,8 +19,6 @@ public class SrcZipUtil
 {
 
 private List<String> fileList;
-private static final String OUTPUT_ZIP_FILE = "C:\\ClemJava\\Folder.zip"; 
-private static final String SOURCE_FOLDER = "C:\\ClemJava\\TestHashCode\\hashcode2014_qualification\\hashcode2014_qualificationn\\src";
 
 public SrcZipUtil()
 {
@@ -30,8 +28,8 @@ public SrcZipUtil()
 public static void main(String[] args)
 {
 	SrcZipUtil appZip = new SrcZipUtil();
-   appZip.generateFileList(new File(SOURCE_FOLDER));
-   appZip.zipIt(OUTPUT_ZIP_FILE);
+   appZip.generateFileList(new File(CommonStatic.SOURCE_FOLDER));
+   appZip.zipIt(CommonStatic.OUTPUT_ZIP_FILE);
 }
 
 public void zipIt(String zipFile)
@@ -44,11 +42,11 @@ public void zipIt(String zipFile)
    {
       try
       {
-         source = SOURCE_FOLDER.substring(SOURCE_FOLDER.lastIndexOf("\\") + 1, SOURCE_FOLDER.length());
+         source = CommonStatic.SOURCE_FOLDER.substring(CommonStatic.SOURCE_FOLDER.lastIndexOf("\\") + 1, CommonStatic.SOURCE_FOLDER.length());
       }
      catch (Exception e)
      {
-        source = SOURCE_FOLDER;
+        source = CommonStatic.SOURCE_FOLDER;
      }
      fos = new FileOutputStream(zipFile);
      zos = new ZipOutputStream(fos);
@@ -70,7 +68,7 @@ public void zipIt(String zipFile)
         zos.putNextEntry(ze);
         try
         {
-           in = new FileInputStream(SOURCE_FOLDER + File.separator + file);
+           in = new FileInputStream(CommonStatic.SOURCE_FOLDER + File.separator + file);
            int len;
            while ((len = in.read(buffer)) > 0)
            {
@@ -84,7 +82,7 @@ public void zipIt(String zipFile)
      }
 
      zos.closeEntry();
-     System.out.println("Folder successfully compressed");
+     System.out.println("Folder successfully compressed : " + CommonStatic.OUTPUT_ZIP_FILE);
 
   }
   catch (IOException ex)
@@ -126,6 +124,6 @@ public void generateFileList(File node)
 
 private String generateZipEntry(String file)
 {
-   return file.substring(SOURCE_FOLDER.length() + 1, file.length());
+   return file.substring(CommonStatic.SOURCE_FOLDER.length() + 1, file.length());
 }
 }    

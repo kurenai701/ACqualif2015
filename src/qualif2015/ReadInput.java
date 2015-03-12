@@ -16,7 +16,7 @@ public class ReadInput {
 		
 		Scanner scanInput = ri.ScannerInputFile();
 		ProblemModel pbMod = ri.ProcessReadInputToModel(scanInput);
-		ri.ProcessModelToVerifFile(pbMod);
+		ri.ProcessInputModelToVerifFile(pbMod);
 
 	}
 	
@@ -28,12 +28,14 @@ public class ReadInput {
 	// From Input file to Input Model
 	public ProblemModel ProcessReadInputToModel(Scanner scanInput)
 	{	
+		System.out.println("ProcessReadInputToModel");
 		ProblemModel pbModel = new ProblemModel();
 		
 		if (scanInput != null)
 		{
-			// 	CODE here parsing of file, and saving to model		
-			pbModel.stringTest = scanInput.next();			
+			// TODO	CODE here parsing of file, and saving to model		
+			pbModel.stringTest = scanInput.next();
+			pbModel.intTest1 = 42;
 		}	
 		
 		return pbModel;
@@ -41,22 +43,22 @@ public class ReadInput {
 	
 	
 	
-	// If we want to verify that we have correct modeling
+	// If time, and if we want to verify that we have correct modeling
 	// From Input Model to Something same as Input Text File
-	public void ProcessModelToVerifFile(ProblemModel pbModel)
+	public void ProcessInputModelToVerifFile(ProblemModel pbModel)
 	{
+		System.out.println("ProcessModelToVerifFile");
+		
 		// Writer
 		PrintWriter writer = CommonStatic.FU.CreateWriterFile(CommonStatic.InputFileVerifPath, "UTF-8");
 		
 		if (writer != null)
 		{
 			if (pbModel != null)
-			{
-			
-				
-				// CODE here processing to read the model and write the file
-				writer.println(pbModel.stringTest);
-				
+			{	// TODO CODE here processing to read the model and write the file
+				writer.println("testingInputWriter");
+				writer.println(pbModel.stringTest);	
+				writer.println(pbModel.intTest1);
 			}
 			writer.close();
 		}
