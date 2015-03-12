@@ -78,7 +78,7 @@ public class ReadInput {
 			int zi; 
 			int ci;
 			Server serverI;
-			for (int mCounter = 1; mCounter <= M; mCounter++)
+			for (int mCounter = 0; mCounter < M; mCounter++)
 			{				
 				zi = scanInput.nextInt();
 				ci = scanInput.nextInt();
