@@ -34,7 +34,7 @@ public class GenerateOutput {
 		}
 		else
 		{
-			PrintWriter writer = CommonStatic.FU.CreateWriterFile(CommonStatic.OutputGeneratedPathUnitTest, CommonStatic.OutputEncoding);
+			PrintWriter writer = CommonStatic.FU.CreateWriterFile(filePath, CommonStatic.OutputEncoding);
 			if (writer != null)
 			{
 				//  !!!!!!!!!!!!!!!!!!! //
