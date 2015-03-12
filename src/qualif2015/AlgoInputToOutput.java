@@ -33,7 +33,7 @@ public class AlgoInputToOutput {
 		ServerAllocation servA[] = new ServerAllocation[pbModel.M];
 		for(int ii =0;ii<pbModel.M;ii++ )
 		{
-			servA[ii] = new ServerAllocation(ii+1, -1, -1, -1);
+			servA[ii] = new ServerAllocation(ii+1, -1, -1, -1,0);
 		}
 		
 		OutputModel res = new OutputModel(servA, pbModel.roomMap, pbModel);
@@ -61,7 +61,7 @@ public class AlgoInputToOutput {
 				int pos = firstFitPosition( curServ.Z, curRow, res);
 				if(pos>=0)
 				{
-					ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup);
+					ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup, pbModel.serverList.get(curServ.Number).C );
 					res.updateServerAllocation(  myAlloc);
 					nAllocated++;
 					break;//get out while loop
@@ -79,7 +79,7 @@ public class AlgoInputToOutput {
 		
 		
 		
-		OutputModel resopt = optimizeAlloc( res);
+		OutputModel resopt = optimizeAlloc( res,rand);
 		
 		// Now Call server allocation to group optimization
 		
@@ -90,7 +90,7 @@ public class AlgoInputToOutput {
 	
 	
 	
-	public OutputModel   optimizeAlloc(OutputModel resInitial)
+	public OutputModel   optimizeAlloc(OutputModel resInitial,Random rand)
 	{
 //		// Optimize the server allocation to groups
 //		GroupAlloc initialGroupAlloc[] = new GroupAlloc[pbModel.P];
@@ -109,17 +109,36 @@ public class AlgoInputToOutput {
 		
 		ServerAllocation bestResult[] = resInitial.serverAllocation.clone();
 		
+		ScoreInfo curScore = resInitial.getScoreModel();
+		int bestScore = curScore.score;
 		
-		int Nit = 100;
+		int Nit = 1000;
+		int ThresholdKeep = 1000;// probability to stay at best result
+		int ThresholdNotBest = 970;
 		for(int itc = 0;itc<Nit;itc++)
 		{
-			optimize(resInitial);
+			optimize(resInitial,ThresholdNotBest,rand);
+			
+			curScore = resInitial.getScoreModel();
+			if(curScore.score>bestScore)
+			{
+				bestScore=curScore.score;
+				bestResult = resInitial.serverAllocation.clone();
+			}else
+			{
+				if(randi(0,1000,rand)<ThresholdKeep)
+				{
+					resInitial.serverAllocation =bestResult;
+				}
+				
+			}
+			
 		}
 		
 		
 		
 		
-		//resInitial.serverAllocation =bestResult;
+		resInitial.serverAllocation =bestResult;
 		
 		
 		// initialGroupAlloc contains the servers allocated to each group.
@@ -130,7 +149,7 @@ public class AlgoInputToOutput {
 	}
 	
 	
-	public void optimize(OutputModel res)
+	public void optimize(OutputModel res,int Threshold,Random rand)
 	{
 	//Take to the rich, give to the poor
 		ScoreInfo curScore = res.getScoreModel();
@@ -157,7 +176,13 @@ public class AlgoInputToOutput {
 		}
 		
 		// Select one server and exchange it
-		ServerAllocation token = getServerFromGroup(res,bestG,curScore);// a optimiser
+		if(randi(0,1000,rand)>900)
+		{
+			bestG = randi(0,res.pb.P-1,rand);
+		}
+		
+		
+		ServerAllocation token = getServerFromGroup(res,bestG,curScore, rand, Threshold);// a optimiser
 		transferFromTo(res, bestG,minG, token);
 	
 		
@@ -171,28 +196,37 @@ public class AlgoInputToOutput {
 	
 	
 	
-  public ServerAllocation getServerFromGroup(OutputModel res,int bestG, ScoreInfo curScore)
+  public ServerAllocation getServerFromGroup(OutputModel res,int bestG, ScoreInfo curScore, Random rand, int Threshold)
   {
 	  
 	  // extract the least problematic server from the group: the lowest capacity server from the best score row
 	  int bestRow = curScore.bestRowByGroup[bestG];
 	  
-	  ServerAllocation candidate = null;
+	  List<ServerAllocation> candidateList = new ArrayList<ServerAllocation>();
 	  for(ServerAllocation curAlloc : res.serverAllocation)
 	  {
 		  
 		  if(curAlloc.Group == bestG   && curAlloc.Row == bestRow)
 		  {
-			  if( candidate == null ||  res.pb.serverList.get(  curAlloc.serverNumber).C <   res.pb.serverList.get(  candidate.serverNumber).C    )
-			  {
-				  candidate = curAlloc;
-			  }
+			  candidateList.add(curAlloc);
 		  }
 		  
-		  
-		  
+		
 	  }
-	  return candidate;
+	  
+	  Collections.sort(candidateList);//: inline sort, lower size to higher size
+	  
+	  
+	  int index = 0;
+	  if(randi(0,1000,rand)>Threshold )
+	  {
+		  index = randi(0,(int)Math.floor((candidateList.size()-1)/2),rand );
+	  }
+	  
+	  
+	  return candidateList.get(index);
+	  
+	  
 	  
   }
 	
