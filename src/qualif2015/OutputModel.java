@@ -1,5 +1,7 @@
 package qualif2015;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /*
@@ -175,5 +177,26 @@ public class OutputModel {
 	}
 	
 	
+	
+	
+	// mode mauvais esprit d'une Dev .NET ;-), il me manque LINQ pour faire ça en une ligne!
+	public List<Server> getListServerInGroup(int groupNum)
+	{		
+		List<Server> servList = new ArrayList<Server>();
+							
+		for(ServerAllocation servAlloc: this.serverAllocation) {
+		if (servAlloc.Group == groupNum);
+			for (Server serv : this.pb.serverList)
+			{
+				if (serv.Number == servAlloc.serverNumber)
+				{
+					servList.add(serv);
+				}
+			}
+		}
+		
+		return servList;
+	}
+
 	
 }
