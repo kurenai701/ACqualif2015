@@ -3,6 +3,7 @@ package qualif2015;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 public class AlgoInputToOutput {
@@ -47,7 +48,7 @@ public class AlgoInputToOutput {
 		
 		OutputModel res = new OutputModel(servA, pbModel.roomMap, pbModel);
 		 
-		
+		Random rand = new Random(42+12);
 		
 		System.out.println("Demarrage Algo");
 		
@@ -69,7 +70,7 @@ public class AlgoInputToOutput {
 				res.updateServerAllocation(  myAlloc);
 			}
 			curRow = (curRow+1)% pbModel.R;
-			curGroup = (curGroup+1)%pbModel.P;
+			curGroup = randi(0,pbModel.P-1, rand);
 			
 		}
 		
@@ -79,7 +80,10 @@ public class AlgoInputToOutput {
 		return res;
 	}
 	
-	
+	public static int randi(int min,int max, Random rand)
+	{
+		return  rand.nextInt(max - min + 1) + min;
+	}
 	
 	
 	

@@ -36,12 +36,10 @@ public class ReadOutput {
 	
 	
 	// If there is a simple way to obtain a "score from the Generated outputFile"
-	public int EvaluateScoreFromOutput()
-	{
-		int score = -42;		
-		
-		// TODO Code Here Evaluation of Score, if simple way
-		System.out.println("EvalScore : " + score);
+	public int EvaluateScoreFromOutput( OutputModel oP)
+	{ 
+		int score =  oP.getScoreModel();
+		System.out.println("EvalScore : " +score);
 		return score;
 	}
 
