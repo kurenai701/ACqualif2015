@@ -15,7 +15,10 @@ public class CommonStatic {
 	
 	// INPUT
 	public static final String InputFilePath = QualifFilesFolderPath+"INPUT.txt";
-	public static final String InputFilePathUnitTest =  QualifFilesFolderPath+"UNITTESTINPUT.txt";
+	// public static final String InputFilePathUnitTest =  QualifFilesFolderPath+"UNITTESTINPUT.txt";
+	public static final String InputFilePathUnitTest =  QualifFilesFolderPath+"dc.in";
+	
+	
 	
 	public static final String InputFileVerifPath = QualifFilesFolderPath+"verifInputFromInputModel.txt";
 	

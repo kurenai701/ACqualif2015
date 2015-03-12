@@ -60,8 +60,7 @@ public class ReadInput {
 			// Parsing Unavailable spaces	
 			
 
-			int buildRoomMap[][] = new int[R][S]; // 0 emplacements libres. on mettra des -1 pour unavailable
-					
+			int buildRoomMap[][] = new int[R][S]; // 0 emplacements libres. on mettra des -1 pour unavailable					
 			int ri;
 			int si;
 						
@@ -71,7 +70,6 @@ public class ReadInput {
 				si = scanInput.nextInt();
 				
 				buildRoomMap[ri][si] = -1;								
-				System.out.println(buildRoomMap[ri][si]);
 			}
 			
 			// Parsing SERVERS
@@ -80,7 +78,7 @@ public class ReadInput {
 			int zi; 
 			int ci;
 			Server serverI;
-			for (int sCounter = 1; sCounter <= S; sCounter++)
+			for (int sCounter = 1; sCounter <= M; sCounter++)
 			{				
 				zi = scanInput.nextInt();
 				ci = scanInput.nextInt();
@@ -116,12 +114,31 @@ public class ReadInput {
 				//  !!!!!!!!!!!!!!!!!!! //
 				// TODO CODE here processing to read the model and write the file
 				//  !!!!!!!!!!!!!!!!!!! //
-
 				
-				writer.println("testingInputWriter");
-		//		writer.println(pbModel.stringTest);	
-		//		writer.println(pbModel.intTest1);
+				// write first line
+				writer.println(pbModel.R + " " + pbModel.S + " " + pbModel.U + " " + pbModel.P + " " + pbModel.M);
 				
+				// write unavailable
+				// mauvais esprit ;-) : would have been easier in C# using LINQ and Lambda !
+				
+				// print matrix, and write  liste of unavailable
+				// list of unavailable
+				for (int ii = 0; ii < pbModel.roomMap.length; ii++)
+				{
+					for (int jj = 0; jj < pbModel.roomMap[0].length; jj++)
+					{						
+						if (pbModel.roomMap[ii][jj] == -1)
+						{	
+							writer.println(ii + " " + jj);
+						}
+					}					
+				}			
+				
+				// write list of server
+			    
+			    for(final Server serv: pbModel.serverList) {
+			    	writer.println(serv.Z + " " + serv.C);
+			    }				
 				//  !!!!!!!!!!!!!!!!!!! //
 			}
 			writer.close();
