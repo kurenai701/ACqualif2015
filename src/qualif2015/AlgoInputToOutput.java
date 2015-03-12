@@ -79,38 +79,50 @@ public class AlgoInputToOutput {
 		
 		
 		
-		
+		OutputModel resopt = optimizeAlloc( res);
 		
 		// Now Call server allocation to group optimization
 		
 		
-		return res;
+		return resopt;
 	}
 	
 	
 	
 	
-	public OutputModel   optimizeAlloc(ProblemModel pbModel,OutputModel resInitial)
+	public OutputModel   optimizeAlloc(OutputModel resInitial)
 	{
-		// Optimize the server allocation to groups
-		GroupAlloc initialGroupAlloc[] = new GroupAlloc[pbModel.P];
+//		// Optimize the server allocation to groups
+//		GroupAlloc initialGroupAlloc[] = new GroupAlloc[pbModel.P];
+//		
+//		for(int curG=0;curG<pbModel.P;curG++)
+//		{
+//			initialGroupAlloc[curG] = new GroupAlloc( new ArrayList<Server>(),pbModel);
+//		}
+//
+//		
+//		for(ServerAllocation curAlloc:  resInitial.serverAllocation)
+//		{
+//			
+//			(initialGroupAlloc[curAlloc.Group]).allocatedServers.add(   pbModel.serverList.get(curAlloc.serverNumber)   );
+//		}
 		
-		for(int curG=0;curG<pbModel.P;curG++)
-		{
-			initialGroupAlloc[curG] = new GroupAlloc( new ArrayList<Server>(),pbModel);
-		}
-
+		ServerAllocation bestResult[] = resInitial.serverAllocation.clone();
 		
-		for(ServerAllocation curAlloc:  resInitial.serverAllocation)
+		
+		int Nit = 100;
+		for(int itc = 0;itc<Nit;itc++)
 		{
-			
-			(initialGroupAlloc[curAlloc.Group]).allocatedServers.add(   pbModel.serverList.get(curAlloc.serverNumber)   );
+			optimize(resInitial);
 		}
+		
+		
+		
+		
+		//resInitial.serverAllocation =bestResult;
 		
 		
 		// initialGroupAlloc contains the servers allocated to each group.
-	
-		
 		return resInitial;
 		
 		
@@ -118,9 +130,58 @@ public class AlgoInputToOutput {
 	}
 	
 	
+	public void optimize(OutputModel res)
+	{
+	//Take to the rich, give to the poor
+		ScoreInfo curScore = res.getScoreModel();
+		
+		
+		int bestScore = 0;
+		int bestG = -1;
+		int minScore  = Integer.MAX_VALUE;
+		int minG = -1;
+		
+		for(int curG = 0;curG<res.pb.P;curG++)
+		{
+			int curS = curScore.scoreByGroup[curG];
+			if(curS> bestScore)
+			{
+				bestScore = curS;
+				bestG = curG;
+			}
+			if(curS< minScore)
+			{
+				minScore = curS;
+				minG = curG;
+			}
+		}
+		
+		// Select one server and exchange it
+		ServerAllocation token = getServerFromGroup(res,bestG);// a optimiser
+		transferFromTo(res, bestG,minG, token);
 	
+		
+		
+	}
 	
+	public void transferFromTo(OutputModel res, int bestG,int minG,ServerAllocation token)
+	{
+		token.Group = minG;
+	}
 	
+	  public ServerAllocation getServerFromGroup(OutputModel res,int bestG)
+	  {
+		  for(ServerAllocation curAlloc : res.serverAllocation)
+		  {
+			  
+			  if(curAlloc.Group == bestG)
+			  {
+				  return curAlloc;
+			  }
+		  }
+		  return null;
+		  
+	  }
 	
 	
 	

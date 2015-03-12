@@ -34,8 +34,12 @@ public class FullProcess {
 		Scanner scanOutput = ro.ScannerOutputFile();	
 		ProblemModel pbModVerif = ro.ProcessReadOutputToInputModel(scanOutput);
 				
+		
+		
+		
+		
 		ri.ProcessInputModelToVerifFile(pbModVerif, CommonStatic.InputFileVerifPathFromOutputRead);	
-		//ro.EvaluateScoreFromOutput();
+		ro.EvaluateScoreFromOutput( outMod );
 	}
 	
 }
