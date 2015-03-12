@@ -40,9 +40,7 @@ public class GenerateOutput {
 				//  !!!!!!!!!!!!!!!!!!! //
 				// TODO CODE HERE Output Generation Logic
 				//  !!!!!!!!!!!!!!!!!!! //
-				writer.println("Test Generate Output");
-				
-
+		
 				int row;
 				int col;
 				int group;
