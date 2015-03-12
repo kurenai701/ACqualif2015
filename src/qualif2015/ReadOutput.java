@@ -1,6 +1,5 @@
 package qualif2015;
 
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ReadOutput {	

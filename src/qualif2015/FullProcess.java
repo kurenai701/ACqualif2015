@@ -25,12 +25,15 @@ public class FullProcess {
 				genOut.GenerateOutputFileFromOutputModel(outMod);
 			
 			
-		// Verify Output correctly linked to Input				
+				
+		// To Verify Output correctly linked to Input				
 		ReadOutput ro = new ReadOutput();
 		Scanner scanOutput = ro.ScannerOutputFile();	
 		ProblemModel pbModVerif = ro.ProcessReadOutputToInputModel(scanOutput);
 				
-		ri.ProcessInputModelToVerifFile(pbModVerif, CommonStatic.InputFileVerifPathFromOutputRead);		
+		ri.ProcessInputModelToVerifFile(pbModVerif, CommonStatic.InputFileVerifPathFromOutputRead);	
+		
+		ro.EvaluateScoreFromOutput();
 	}
 	
 }
