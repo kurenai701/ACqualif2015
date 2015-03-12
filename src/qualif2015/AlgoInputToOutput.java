@@ -21,17 +21,7 @@ public class AlgoInputToOutput {
 //
 //	}	
 	
-	public void   optimizeAlloc(ProblemModel pbModel)
-	{
-		// Optimize the server allocation to groups
-		
-		
-		
-		
-		
-	
-	}
-	
+
 	
 	
 	
@@ -57,28 +47,82 @@ public class AlgoInputToOutput {
 		Collections.sort(sortedServerList,Collections.reverseOrder());//: inline sort, Higher score to lower score!
 		
 		
-		//Round Robin Group and Row allocation;
+		//Round Robin Row allocation, random group allocation;
 		int curGroup=0;
 		int curRow=0;
+		int lastRow=0;
+		int nAllocated = 0;
 		for(Server curServ : sortedServerList )
 		{
-			//Try to fit server is room Line
-			int pos = firstFitPosition( curServ.Z, curRow, res);
-			if(pos>=0)
-			{
-				ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup);
-				res.updateServerAllocation(  myAlloc);
-			}
 			curRow = (curRow+1)% pbModel.R;
+			while(curRow!=lastRow)
+			{
+				//Try to fit server is room row
+				int pos = firstFitPosition( curServ.Z, curRow, res);
+				if(pos>=0)
+				{
+					ServerAllocation myAlloc=new ServerAllocation(curServ.Number, curRow, pos, curGroup);
+					res.updateServerAllocation(  myAlloc);
+					nAllocated++;
+					break;//get out while loop
+				}
+				curRow = (curRow+1)% pbModel.R;
+			}
+			lastRow = curRow;
 			curGroup = randi(0,pbModel.P-1, rand);
 			
 		}
-		
+		System.out.println(""+nAllocated+" servers allocated");
 		
 		
 		System.out.println("Finished simple algo");
+		
+		
+		
+		
+		
+		// Now Call server allocation to group optimization
+		
+		
 		return res;
 	}
+	
+	
+	
+	
+	public OutputModel   optimizeAlloc(ProblemModel pbModel,OutputModel resInitial)
+	{
+		// Optimize the server allocation to groups
+		GroupAlloc initialGroupAlloc[] = new GroupAlloc[pbModel.P];
+		
+		for(int curG=0;curG<pbModel.P;curG++)
+		{
+			initialGroupAlloc[curG] = new GroupAlloc( new ArrayList<Server>(),pbModel);
+		}
+
+		
+		for(ServerAllocation curAlloc:  resInitial.serverAllocation)
+		{
+			
+			(initialGroupAlloc[curAlloc.Group]).allocatedServers.add(   pbModel.serverList.get(curAlloc.serverNumber)   );
+		}
+		
+		
+		// initialGroupAlloc contains the servers allocated to each group.
+	
+		
+		return resInitial;
+		
+		
+	
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public static int randi(int min,int max, Random rand)
 	{

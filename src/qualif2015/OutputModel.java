@@ -9,6 +9,9 @@ package qualif2015;
   
 public class OutputModel {
 	protected ServerAllocation serverAllocation[];
+	
+	
+	
 	int roomMap[][];//Row Column
 	
 	int continuousFreeSpace[][];//continuous free space after this
@@ -119,7 +122,7 @@ public class OutputModel {
 	}
 	
 	
-	int getScoreModel()
+	ScoreInfo getScoreModel()
 	{
 		//Return the score of current model
 		
@@ -162,10 +165,11 @@ public class OutputModel {
 		
 		if(lowestScore == Integer.MAX_VALUE)
 		{
-			return 0;
+			return new ScoreInfo(0, scoreGroup);
 		}
 		
-		return lowestScore;
+		
+		return new ScoreInfo(lowestScore, scoreGroup);
 		
 		
 	}
