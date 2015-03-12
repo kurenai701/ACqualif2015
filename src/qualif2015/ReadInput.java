@@ -55,18 +55,23 @@ public class ReadInput {
 							
 			//System.out.println(R + " " + S + " " + U + " " + P + " " + M);
 			
+			
+			
+			// Parsing Unavailable spaces	
+			
+
+			int buildRoomMap[][] = new int[R][S]; // 0 emplacements libres. on mettra des -1 pour unavailable
+					
 			int ri;
 			int si;
-			
-			
-			// Parsing Unavailable			
+						
 			for (int uCounter = 1; uCounter <= U; uCounter++)
 			{
 				ri = scanInput.nextInt();
 				si = scanInput.nextInt();
 				
-				System.out.println("rienfaitpourlemoment");
-				System.out.println(ri + " " + si);
+				buildRoomMap[ri][si] = -1;								
+				System.out.println(buildRoomMap[ri][si]);
 			}
 			
 			// Parsing SERVERS
@@ -85,7 +90,7 @@ public class ReadInput {
 				servList.add(serverI);
 			}
 			
-			pbModel = new ProblemModel(R, S, U, P, M, null, servList);
+			pbModel = new ProblemModel(R, S, U, P, M, buildRoomMap, servList);
 				
 			//  !!!!!!!!!!!!!!!!!!! //
 		}	
